@@ -1,31 +1,5 @@
 local s = game:GetObjects("rbxassetid://84072993261034")[1]
 s.Parent = game.Workspace
-local currentRoom = workspace.CurrentRooms:GetChildren()[#workspace.CurrentRooms:GetChildren()]
-local fixtures = currentRoom:FindFirstChild("Assets", true):FindFirstChild("Light_Fixtures", true)
-
-if fixtures then
-    for _, lightStand in pairs(fixtures:GetChildren()) do
-        local lightFixture = lightStand:FindFirstChild("LightFixture", true)
-        if lightFixture then
-            -- Tắt PointLight
-            for _, desc in pairs(lightFixture:GetDescendants()) do
-                if desc:IsA("PointLight") then
-                    desc.Enabled = false
-                end
-            end
-            -- Làm Neon tối đi (tuỳ chỉnh thêm nếu muốn)
-local neon = lightFixture:FindFirstChild("Neon", true)
-if neon and neon:IsA("BasePart") then
-    neon.Transparency = 1
-    neon.Material = Enum.Material.SmoothPlastic
-    -- Xoá toàn bộ Attachment trong Neon
-    for _, child in pairs(neon:GetChildren()) do
-        if child:IsA("Attachment") then
-            child:Destroy()
-        end
-    end
-end
-
 
 local ss = s:FindFirstChildWhichIsA("BasePart") or s:FindFirstChildWhichIsA("Part")
 ss.CFrame = game.Workspace.CurrentRooms:GetChildren()[#game.Workspace.CurrentRooms:GetChildren() - 1].Parts.Floor.CFrame + Vector3.new(0,15,0)
