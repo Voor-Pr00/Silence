@@ -12,6 +12,7 @@ wait(math.random(0.5, 1))
 if not chr:GetAttribute("Crouching") then
 game.Players.LocalPlayer.Character.Humanoid.Health -= 3
 end
+game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Silence"
 if ultimaroom ~= game.ReplicatedStorage.GameData.LatestRoom.Value then 
 s:Destroy()
 break end
