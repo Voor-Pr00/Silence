@@ -7,10 +7,21 @@ if fixtures then
     for _, lightStand in pairs(fixtures:GetChildren()) do
         local lightFixture = lightStand:FindFirstChild("LightFixture", true)
         if lightFixture then
-            local pointLight = lightFixture:FindFirstChildWhichIsA("PointLight")
-            if pointLight then
-                pointLight.Enabled = false
+            -- Tắt PointLight
+            for _, desc in pairs(lightFixture:GetDescendants()) do
+                if desc:IsA("PointLight") then
+                    desc.Enabled = false
+                end
             end
+            -- Làm Neon tối đi (tuỳ chỉnh thêm nếu muốn)
+local neon = lightFixture:FindFirstChild("Neon", true)
+if neon and neon:IsA("BasePart") then
+    neon.Transparency = 1
+    neon.Material = Enum.Material.SmoothPlastic
+    -- Xoá toàn bộ Attachment trong Neon
+    for _, child in pairs(neon:GetChildren()) do
+        if child:IsA("Attachment") then
+            child:Destroy()
         end
     end
 end
