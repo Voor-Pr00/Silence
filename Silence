@@ -1,5 +1,14 @@
 local s = game:GetObjects("rbxassetid://77855921185393")[1]
 s.Parent = game.Workspace
+local fixtures = workspace.CurrentRooms.Assets.Light_Fixtures:GetChildren()
+
+for _, lightStand in pairs(fixtures) do
+    local pointLight = lightStand:FindFirstChild("LightFixture", true):FindFirstChildWhichIsA("PointLight")
+    if pointLight then
+        pointLight.Enabled = false
+    end
+end
+
 local ss = s:FindFirstChildWhichIsA("BasePart") or s:FindFirstChildWhichIsA("Part")
 ss.CFrame = game.Workspace.CurrentRooms:GetChildren()[#game.Workspace.CurrentRooms:GetChildren() - 1].Parts.Floor.CFrame + Vector3.new(0,15,0)
 
