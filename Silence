@@ -1,4 +1,4 @@
-local s = game:GetObjects("rbxassetid://84072993261034")[1]
+local s = game:GetObjects("rbxassetid://77855921185393")[1]
 s.Parent = game.Workspace
 local ss = s:FindFirstChildWhichIsA("BasePart") or s:FindFirstChildWhichIsA("Part")
 ss.CFrame = game.Workspace.CurrentRooms:GetChildren()[#game.Workspace.CurrentRooms:GetChildren() - 1].Parts.Floor.CFrame + Vector3.new(0,15,0)
