@@ -6,7 +6,7 @@ ss.CFrame = game.Workspace.CurrentRooms:GetChildren()[#game.Workspace.CurrentRoo
 local ultimaroom = game.ReplicatedStorage.GameData.LatestRoom.Value
 local plr = game.Players.LocalPlayer
 local chr = plr.Character or plr.CharacterAdded:Wait()
-wait(3)
+wait(1)
 while true do
 wait(math.random(0.5, 1))
 if not chr:GetAttribute("Crouching") then
