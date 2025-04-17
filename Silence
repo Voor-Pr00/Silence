@@ -4,6 +4,8 @@ s.Parent = game.Workspace
 local ss = s:FindFirstChildWhichIsA("BasePart") or s:FindFirstChildWhichIsA("Part")
 ss.CFrame = game.Workspace.CurrentRooms:GetChildren()[#game.Workspace.CurrentRooms:GetChildren() - 1].Parts.Floor.CFrame + Vector3.new(0,10,0)
 
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("I must crouch",true)
+
 local ultimaroom = game.ReplicatedStorage.GameData.LatestRoom.Value
 local plr = game.Players.LocalPlayer
 local chr = plr.Character or plr.CharacterAdded:Wait()
