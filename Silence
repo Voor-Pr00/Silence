@@ -22,8 +22,8 @@ local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.
 
 ---====== Display achievement ======---
 achievementGiver({
-    Title = "	I want Crouching!!",
-    Desc = "Why?",
+    Title = "I want Crouching!!",
+    Desc = "Crouching!",
     Reason = "Encounter Silence",
     Image = "rbxassetid://139721663443738"
 })
