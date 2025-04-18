@@ -9,6 +9,8 @@ local ModuleEvents = require(ReplicatedStorage.ClientModules.Module_Events)
 local currentrooms = game.Workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]
 ModuleEvents.shatter(currentrooms)
 
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("I must crouch",true)
+
 local ultimaroom = game.ReplicatedStorage.GameData.LatestRoom.Value
 local plr = game.Players.LocalPlayer
 local chr = plr.Character or plr.CharacterAdded:Wait()
@@ -18,7 +20,6 @@ wait(math.random(0.5, 1))
 if not chr:GetAttribute("Crouching") then
 game.Players.LocalPlayer.Character.Humanoid.Health -= 3
 game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Silence"
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("I must crouch",true)
 end
 if ultimaroom ~= game.ReplicatedStorage.GameData.LatestRoom.Value then 
 s:Destroy()
