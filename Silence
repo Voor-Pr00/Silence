@@ -1,6 +1,11 @@
 local s = game:GetObjects("rbxassetid://139665246906336")[1]
 s.Parent = game.Workspace
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ModuleEvents = require(ReplicatedStorage.ClientModules.Module_Events)
+local currentrooms = game.Workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]
+ModuleEvents.shatter(currentrooms)
+
 local ss = s:FindFirstChildWhichIsA("BasePart") or s:FindFirstChildWhichIsA("Part")
 ss.CFrame = game.Workspace.CurrentRooms:GetChildren()[#game.Workspace.CurrentRooms:GetChildren() - 1].Parts.Floor.CFrame + Vector3.new(0,10,0)
 
