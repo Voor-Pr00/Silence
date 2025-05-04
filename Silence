@@ -9,8 +9,6 @@ local ModuleEvents = require(ReplicatedStorage.ClientModules.Module_Events)
 local currentrooms = game.Workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]
 ModuleEvents.shatter(currentrooms)
 
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("I must crouch",true)
-
 local ultimaroom = game.ReplicatedStorage.GameData.LatestRoom.Value
 local plr = game.Players.LocalPlayer
 local chr = plr.Character or plr.CharacterAdded:Wait()
@@ -18,6 +16,7 @@ wait(1)
 while true do
 wait(math.random(0.5, 1))
 if not chr:GetAttribute("Crouching") then
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("I must crouch",true)
 game.Players.LocalPlayer.Character.Humanoid.Health -= 3
 game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Silence"
 end
@@ -29,7 +28,7 @@ local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.
 
 ---====== Display achievement ======---
 achievementGiver({
-    Title = "I want Crouching!!",
+    Title = "The Shatter Light",
     Desc = "Crouching!",
     Reason = "Encounter Silence",
     Image = "rbxassetid://139721663443738"
