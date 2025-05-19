@@ -11,11 +11,11 @@ local hunger = game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(functi
 game.Players.LocalPlayer.Character.Humanoid:TakeDamage(1000)
 game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Hunger [Opened Door]"
 end)
-wait(27)
+wait(28.5)
 hunger:Disconnect()
 game.Workspace.s:Destroy()
 local dmg = true
-local hg = game:GetObjects("rbxassetid://101252021434678")[1]
+local hg = game:GetObjects("rbxassetid://139163954602093")[1]
 hg.Parent = game.Workspace
 local hgs = hg:FindFirstChildWhichIsA("BasePart") or hg:FindFirstChildWhichIsA("Part")
 hgs.CFrame = game.Workspace.CurrentRooms:GetChildren()[#game.Workspace.CurrentRooms:GetChildren() - 1].Parts.Floor.CFrame + Vector3.new(0,6,0)
@@ -29,17 +29,23 @@ task.spawn(function()
 	    task.wait(0.4)
 	    local _ , camera = game.Workspace.CurrentCamera:WorldToViewportPoint(hgs.Position)
 	    if not camera then
-local FPS = 3
-    local clock = tick()
-        while clock + 1.5/ FPS > tick() do end
-    wait()
-    clock = tick()
 game.Players.LocalPlayer.Character.Humanoid:TakeDamage(9)
-game.ReplicatedStorage.GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Hunger"
-	    end
+
+hgs.Touched:Connect(function(hit)
+    local character = hit.Parent
+    local player = game.Players:GetPlayerFromCharacter(character)
+
+    if player then
+       local freezeTime = 2000
+	local start = tick()
+	while tick() - start < freezeTime do
+	end
 end
 end)
-
+end
+game.ReplicatedStorage.GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Nightmare_Hunger"
+end
+end)
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 dmg = false
 hg:Destroy()
