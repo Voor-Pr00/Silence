@@ -10,6 +10,26 @@ local sound = Instance.new("Sound")
 	sound.Volume = 3
 	sound:Play()
 wait(6)
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "ImageGui"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+local imageLabel = Instance.new("ImageLabel")
+imageLabel.Size = UDim2.new(0.5, 0, 0.5, 0)
+imageLabel.Position = UDim2.new(0.25, 0, 0.25, 0)
+imageLabel.BackgroundTransparency = 1
+imageLabel.Image = "rbxassetid://106224571020829"
+imageLabel.Parent = screenGui
+
+task.delay(3, function()
+	if screenGui then
+		screenGui:Destroy()
+	end
+end)
 if not chr:GetAttribute("Crouching") then
 game.Players.LocalPlayer.Character.Humanoid.Health -= 1000
 game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Bliss"
