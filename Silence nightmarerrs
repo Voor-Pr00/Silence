@@ -1,0 +1,144 @@
+function LoadCustomInstance(source, parent)
+	local model
+
+	-- Normalize GitHub URL if needed
+	local function NormalizeGitHubURL(url)
+		if url:match("^https://github.com/.+%.rbxm$") and not url:find("?raw=true") then
+			return url .. "?raw=true"
+		end
+		return url
+	end
+
+	while task.wait() and not model do
+		if type(source) == "number" or tostring(source):match("^%d+$") then
+			-- Asset ID loading
+			local success, result = pcall(function()
+				return game:GetObjects("rbxassetid://" .. tostring(source))[1]
+			end)
+
+			if success and result then
+				model = result
+			else
+				task.wait(0.5)
+			end
+
+		elseif type(source) == "string" and source:match("^https?://") and source:match("%.rbxm") then
+			-- GitHub URL loading
+			local url = NormalizeGitHubURL(source)
+			
+			local success, result = pcall(function()
+				local fileName = "temp_" .. tostring(math.random(100000, 999999)) .. ".rbxm"
+				writefile(fileName, game:HttpGet(url))
+				local obj = game:GetObjects((getcustomasset or getsynasset)(fileName))[1]
+				delfile(fileName)
+				return obj
+			end)
+
+			if success and result then
+				model = result
+			else
+					task.wait(0.5)
+			end
+
+		else
+					break
+		end
+
+		if model then
+			model.Parent = parent or workspace
+
+			for _, obj in ipairs(model:GetDescendants()) do
+				if obj:IsA("Script") or obj:IsA("LocalScript") then
+					obj:Destroy()
+				end
+			end
+
+			pcall(function()
+				model:SetAttribute("LoadedByExecutor", true)
+			end)
+		end
+	end
+
+	return model
+end
+
+function GetRoom()
+        local gruh = workspace.CurrentRooms
+        return gruh:FindFirstChild(game.ReplicatedStorage.GameData.LatestRoom.Value)
+end
+
+function GetLastRoom()
+    local gruh = workspace.CurrentRooms
+    return gruh[game.ReplicatedStorage.GameData.LatestRoom.Value + 1]
+end
+
+local moduleScripts = {
+        Module_Events = require(game.ReplicatedStorage.ClientModules.Module_Events),
+        Main_Game = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
+}
+
+function silence()
+	local s = LoadCustomInstance("https://github.com/Voorproo/Silence/blob/main/silence%20nightmare.rbxm?raw=true", workspace)
+	s.Parent = workspace
+
+	local entity = s:FindFirstChildWhichIsA("BasePart")
+	entity.Parent = s
+	entity.CFrame = GetRoom():WaitForChild("RoomEntrance").CFrame * CFrame.new(0,8,-15)
+    
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    local ModuleEvents = require(ReplicatedStorage.ClientModules.Module_Events)
+    local currentrooms = game.Workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]
+    ModuleEvents.shatter(currentrooms)
+    local ultimaroom = game.ReplicatedStorage.GameData.LatestRoom.Value
+	wait(1.5)
+	task.spawn(function()
+	while true do
+    wait(0.5)
+    local player = game.Players.LocalPlayer
+	local chr = player.Character
+    if not chr:GetAttribute("Crouching") then
+    require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("I must CROUCH",true)
+    game.Players.LocalPlayer.Character.Humanoid.Health -= 5
+    game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Nightmare Silence"
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("You die to Nightmare_Silence",true)wait(4)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("You need to crouch and dont look Nightmare_Silence",true)
+    end
+    
+    if ultimaroom ~= game.ReplicatedStorage.GameData.LatestRoom.Value then 
+    s:Destroy()
+    break end
+    end
+    end)
+    
+    local cam = workspace.CurrentCamera
+    
+    local function LookAt()
+    local direction = (entity.Position - cam.CFrame.Position).unit
+    local dot_product = direction:Dot(cam.CFrame.LookVector)
+    return dot_product > 0.95
+    end
+	
+	task.spawn(function()
+		while true do
+			task.wait(0.5)
+			
+			local player = game.Players.LocalPlayer
+			local char = player.Character
+			local hum = char and char:FindFirstChildOfClass("Humanoid")
+			local hrp = char and char:FindFirstChild("HumanoidRootPart")
+			
+			if hum and hrp and (hrp.Position - entity.Position).Magnitude <= 35 then
+	    		if LookAt() then
+	            game.Players.LocalPlayer.Character.Humanoid.Health -= 4
+                game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Nightmare Silence"
+if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("You die to Nightmare Silence",true)wait(4) require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("You need to crouch and dont look Nightmare silence",true)
+end
+                end
+            end
+		end
+	end)
+	
+end
+
+pcall(silence)
