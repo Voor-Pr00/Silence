@@ -12,6 +12,11 @@ local sound = Instance.new("Sound")
 	sound.Volume = 3
 	sound:Play()
 wait(6)
+if chr:GetAttribute("Crouching") then
+game.Players.LocalPlayer.Character.Humanoid.Health -= 1000
+game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Bliss[Crouch Early]"
+end
+wait(2)
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
