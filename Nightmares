@@ -49,6 +49,7 @@ end)
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 dmg = false
 hg:Destroy()
+game.Players.LocalPlayer.Character.Humanoid.Health -= 7
 caa = 0
 tween = game:GetService("TweenService")
 local TestMultplayer = true
