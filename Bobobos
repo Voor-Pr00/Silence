@@ -2,6 +2,8 @@ local plr = game.Players.LocalPlayer
 local chr = plr.Character or plr.CharacterAdded:Wait()
 
 game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(255, 247, 12)
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(255, 255, 255)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("What the fu<k is that?!?!?!",true)
 local sound = Instance.new("Sound")
 	sound.SoundId = "rbxassetid://"..85677794592741
@@ -30,11 +32,10 @@ task.delay(3, function()
 		screenGui:Destroy()
 	end
 end)
+wait(4)
 if not chr:GetAttribute("Crouching") then
 game.Players.LocalPlayer.Character.Humanoid.Health -= 1000
 game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Bliss"
-if game.Players.LocalPlayer.Character.Humanoid.Health >= 0 then
-game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(255, 255, 255)
 if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
 local shadow = game:GetObjects("rbxassetid://11503625408")[1]
 		local gui = Instance.new("ScreenGui",game.Players.LocalPlayer.PlayerGui)
@@ -93,6 +94,5 @@ local shadow = game:GetObjects("rbxassetid://11503625408")[1]
 			shadow.BackgroundColor3 = Color3.new(0, 0, 0);
 			shadow.Visible = false;
 			shadow.Jumpscare:Stop()
-end
 end
 end
