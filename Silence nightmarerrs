@@ -100,8 +100,6 @@ function silence()
     require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("I must CROUCH",true)
     game.Players.LocalPlayer.Character.Humanoid.Health -= 5
     game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Nightmare Silence"
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("You die to Nightmare_Silence",true)wait(4)
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("You need to crouch and dont look Nightmare_Silence",true)
     end
     
     if ultimaroom ~= game.ReplicatedStorage.GameData.LatestRoom.Value then 
@@ -132,7 +130,6 @@ require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("
 	            game.Players.LocalPlayer.Character.Humanoid.Health -= 4
                 game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Nightmare Silence"
 if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("You die to Nightmare Silence",true)wait(4) require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("You need to crouch and dont look Nightmare silence",true)
 end
                 end
             end
