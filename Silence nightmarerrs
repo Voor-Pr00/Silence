@@ -78,7 +78,7 @@ local moduleScripts = {
 }
 
 function silence()
-	local s = LoadCustomInstance("https://github.com/Voorproo/Silence/blob/main/silence%20nightmare.rbxm?raw=true", workspace)
+	local s = LoadCustomInstance("https://github.com/Voor-Pr00/Silence/blob/main/silence%20nightmare.rbxm?raw=true", workspace)
 	s.Parent = workspace
 
 	local entity = s:FindFirstChildWhichIsA("BasePart")
