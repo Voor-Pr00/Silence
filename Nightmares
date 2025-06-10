@@ -18,7 +18,7 @@ wait(26.7)
 hunger:Disconnect()
 
 local dmg = true
-local spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/Voorproo/Fogroom/refs/heads/main/Wwwhyyyyil"))()
+local spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/Voor-Pr00/Fogroom/refs/heads/main/Wwwhyyyyil"))()
 local entity = spawner.Create({
 	Entity = {
 		Name = "Hungeryeyyyh",
@@ -108,7 +108,7 @@ function GitAud(soundgit,filename)
 end
 
     local sound = Instance.new("Sound")
-    sound.SoundId = GitAud("https://raw.githubusercontent.com/Voorproo/Silence/refs/heads/main/RPReplay_Final1748135502%20(mp3cut.net).mp3", 1, "hunger")
+    sound.SoundId = GitAud("https://raw.githubusercontent.com/Voor-Pr00/Silence/refs/heads/main/RPReplay_Final1748135502%20(mp3cut.net).mp3", 1, "hunger")
     sound.Parent = workspace
     sound.Volume = 0.8
     sound:Play()
